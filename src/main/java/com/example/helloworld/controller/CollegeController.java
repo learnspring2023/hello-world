@@ -3,6 +3,8 @@ package com.example.helloworld.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.helloworld.models.College;
@@ -36,6 +38,30 @@ public class CollegeController {
 	public College getCollege() {
 		CollegeService collegeService = new CollegeService();
 		return collegeService.getCollege();
+	}
+
+	//GET
+	// Request Parameter
+	@GetMapping("receiveId")
+	public Student receiveId(@RequestParam int id, @RequestParam(required = false) String name) {
+		System.out.println("Received ID:"+id);
+		System.out.println("Received Name:"+name);
+		CollegeService collegeService = new CollegeService();
+		List<Student> list =  collegeService.createStudents();
+		for(Student s: list) {
+			if(s.getId()==id) {
+				return s;
+			}
+		}
+		return null;
+	}
+
+	// Path Variable
+	@GetMapping("receiveId/{id}/{name}")
+	public String receiveIdPath(@PathVariable int id, @PathVariable String name) {
+		System.out.println("Received Path Variable ID:"+id);
+		System.out.println("Received Path Variable Name:"+name);
+		return "Success";
 	}
 
 //	//Converts JAVA objevts to JSON -  JavaScript Object Notation, Jackson
