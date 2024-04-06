@@ -2,6 +2,8 @@ package com.example.helloworld.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,12 +12,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.helloworld.models.Student;
+import com.example.helloworld.service.ICollegeService;
 
 @RestController
 public class PostController {
 
+	@Autowired
+	@Qualifier(value = "univercityService")
+	ICollegeService collegeService;
+	
 	@PostMapping("add-student")
 	public String addStudent(@RequestBody Student student) {
+		collegeService.createStudents();
 		System.out.println(student);
 		return "Added to Database Successfully";
 	}

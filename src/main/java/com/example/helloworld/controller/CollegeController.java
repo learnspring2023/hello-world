@@ -2,6 +2,8 @@ package com.example.helloworld.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,12 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.helloworld.models.College;
 import com.example.helloworld.models.Student;
-import com.example.helloworld.service.CollegeService;
+import com.example.helloworld.service.CollegeServiceImpl2;
+import com.example.helloworld.service.ICollegeService;
 
-@RestController
+@RestController //<-- @Component 
 public class CollegeController {
 
 
+	// Dependency Inj 
+	@Autowired
+//	@Qualifier(value = "collegeServiceImpl2")
+	ICollegeService collegeService;
+//	CollegeServiceImpl2 collegeService;
+	
 //	//REST --> HTTP -->(Website)--> HTTP Methods - GET , POST, PUT, DELETE
 //	@GetMapping("hello")
 //	public String hello() {
@@ -24,19 +33,18 @@ public class CollegeController {
 
 	@GetMapping("getStudent")
 	public Student getStudent() {
-		CollegeService collegeService = new CollegeService();
 		return collegeService.createStudent();
 	}
 
 	@GetMapping("getStudentsList")
 	public List<Student> getStudentsList() {
-		CollegeService collegeService = new CollegeService();
+//		CollegeService collegeService = new CollegeService();
 		return collegeService.createStudents();
 	}
 
 	@GetMapping("getCollege")
 	public College getCollege() {
-		CollegeService collegeService = new CollegeService();
+//		CollegeService collegeService = new CollegeService();
 		return collegeService.getCollege();
 	}
 
@@ -46,7 +54,7 @@ public class CollegeController {
 	public Student receiveId(@RequestParam int id, @RequestParam(required = false) String name) {
 		System.out.println("Received ID:"+id);
 		System.out.println("Received Name:"+name);
-		CollegeService collegeService = new CollegeService();
+//		CollegeService collegeService = new CollegeService();
 		List<Student> list =  collegeService.createStudents();
 		for(Student s: list) {
 			if(s.getId()==id) {

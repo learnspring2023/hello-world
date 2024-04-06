@@ -3,10 +3,13 @@ package com.example.helloworld.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.example.helloworld.models.College;
 import com.example.helloworld.models.Student;
 
-public class CollegeService {
+@Component  //@Service, @Repository
+public class CollegeServiceImpl2  implements ICollegeService {
 
 	public Student createStudent() {
 		Student student = new Student(11, "Chitra");
