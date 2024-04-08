@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.helloworld.models.College;
 import com.example.helloworld.models.Student;
 
-@Primary
-//@Component
-@Service //@Repository
 public class UnivercityService implements ICollegeService {
 
 	@Override

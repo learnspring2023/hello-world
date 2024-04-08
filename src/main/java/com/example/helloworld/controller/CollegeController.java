@@ -18,11 +18,23 @@ import com.example.helloworld.service.ICollegeService;
 public class CollegeController {
 
 
-	// Dependency Inj 
-	@Autowired
+	// Dependency Inj  - Field inj
+//	@Autowired
 //	@Qualifier(value = "collegeServiceImpl2")
-	ICollegeService collegeService;
-//	CollegeServiceImpl2 collegeService;
+	ICollegeService collegeService; 
+
+	//COnstructor inj
+	@Autowired
+	CollegeController (@Qualifier("collegeServiceImpl2") ICollegeService collegeService) {
+		this.collegeService = collegeService;
+	}	
+	
+//	//seter Inj
+//	@Autowired
+//	public void setCollegeService(@Qualifier("collegeServiceImpl2") ICollegeService collegeService) {
+//		this.collegeService = collegeService;
+//	}
+	
 	
 //	//REST --> HTTP -->(Website)--> HTTP Methods - GET , POST, PUT, DELETE
 //	@GetMapping("hello")

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.helloworld.models.Student;
 import com.example.helloworld.service.ICollegeService;
+import com.example.helloworld.service.UtilityService;
 
 @RestController
 public class PostController {
@@ -21,10 +22,14 @@ public class PostController {
 	@Qualifier(value = "univercityService")
 	ICollegeService collegeService;
 	
+	@Autowired
+	UtilityService utilityService;
+	
 	@PostMapping("add-student")
 	public String addStudent(@RequestBody Student student) {
 		collegeService.createStudents();
 		System.out.println(student);
+		System.out.println(utilityService.totalFee());
 		return "Added to Database Successfully";
 	}
 	
