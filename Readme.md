@@ -6,7 +6,9 @@ Spring/Spring MVC
 2) Spring Core - Dependency Injection (Automatic Obj Cretion)
 	 - Creates object without NEW word
 	 - Tight Coupling of classes replaced with 
-	 - Loosely coupled 
+	 - Loosely coupled
+	- Object Creation 1) @Bean in Config 2) @Component/@Service/@Repositor - On Class - @Primary
+	- Object Usage - @Autowired, @Qualifier --> 1) Field level 2) Constructor 3) Setter
 3) Spring JPA - (Java Persistance API) - ORM, Database, SQL, Commit, Rollback
 
 
